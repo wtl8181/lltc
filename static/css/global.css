@@ -22,6 +22,9 @@ li{
 .fr{
     float: right;
 }
+input,button,select,textarea{
+  outline:none
+}
 .clearFix{
     position: relative;
 }
@@ -41,25 +44,14 @@ li{
 .border{
     border: 1px solid black;
 }
-.font12{
-    font-size: 12px;
-}
-.font14{
-    font-size: 14px;
-}
-.font16{
-    font-size: 16px;
-}
+
 .fw{
     font-weight: bold;
 }
 /* icon被选时的颜色 */
 .rlActive{
     color: #fb8972 !important;
-} 
-
-
-
+}
 
 .iconfont {
     font-family:"iconfont" !important;
@@ -68,6 +60,26 @@ li{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+input::-webkit-input-placeholder{
+  color:#999;
+  opacity: 0.4;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+  color:#999;
+  opacity: 0.4;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+  color:#999;
+  opacity: 0.4;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+  color:#999;
+  opacity: 0.4;
+}
+/*a标签在手机上显示异常*/
+a:-webkit-any-link{ color: inherit;}
+
+
 
 
 

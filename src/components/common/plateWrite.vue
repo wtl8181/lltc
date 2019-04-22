@@ -26,11 +26,11 @@
                      <li v-show="txtboardshow" v-for="(item,index) in cartxt" class='txtboard'>
                          <span class='key english' v-show="index==cartxt.length-1" @click="txtboardshow=false,numboardshow=true">ABC</span><!--切换到英文输入-->
                          <label class='key' v-for="(items,indexi) in item" @click="txtclick(items,indexi,item.length)">{{items}}</label>
-                         <span class='key delete icondel  iconfont' 
+                         <span class='key delete icondel  iconfont'
                             v-show="index==cartxt.length-1" @click="plate=plate.substr(0, plate.length-1)">
                          </span><!--删除-->
                      </li>
-                     <li v-show="numboardshow" v-for="(item,index) in numtxt" class='numboard'>  <!--一个li为一行-->                       
+                     <li v-show="numboardshow" v-for="(item,index) in numtxt" class='numboard'>  <!--一个li为一行-->
                          <span class='key chinese'v-show="index==cartxt.length-1" @click="txtboardshow=true,numboardshow=false">
                              中文
                          </span><!--切换到中文输入-->
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import eventBus from './eventBus.js'//引入中间商
+
  export default{
       data(){
          return{
@@ -90,7 +90,7 @@ import eventBus from './eventBus.js'//引入中间商
       },
       methods: {
           txtclick : function(txt,indexi,size){
-              
+
               if(this.plate.length>7){
                   return
               }
@@ -99,42 +99,42 @@ import eventBus from './eventBus.js'//引入中间商
               this.plate+=txt;
               this.keyb = txt;
               console.log(this.plate)
-            //   this.composition(indexi,size);            
+            //   this.composition(indexi,size);
           },
           numclick : function(num,indexi,size){
-              
+
               if(this.plate.length>7){
                   return
               }
-              
-              this.plate+=num;            
+
+              this.plate+=num;
               this.keyb = num;
-              
+
             //   this.composition(indexi,size);
-              
+
           },
           submit : function(){
               if(this.plate==''){
                   this.tips = '请输入车牌号码';
-                  alert( this.tips)     
+                  alert( this.tips)
                   return;
-              }            
+              }
               if(!(/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[警京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]{0,1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}[A-Z0-9]{0,1}[A-Z0-9]{0,1}$/.test(this.plate))){
                   //不是车牌
                   this.tips = '车牌号格式不正确'
-                  alert( this.tips)        
+                  alert( this.tips)
                   return;
               }
                 this.tips = '';
-                
+
 
             //绑定车牌
               this.$ajax({
-                url: 'mine/plate/bind',
+                url: 'api/mine/plate/bind',
                 method: 'post',
                 data: {
                   plateNo: this.plate,
-                  userId:this.$store.state.userId,
+                  userId:localStorage.getItem("userId"),
                   cityCode:"1",
                   markType:1,
                 },
@@ -161,11 +161,11 @@ import eventBus from './eventBus.js'//引入中间商
                 let plateNo = this.$store.state.editPlate;
                 console.log(plateNo)
                 this.$ajax({
-                  url: 'mine/plate/unbind',
+                  url: 'api/mine/plate/unbind',
                   method: 'post',
                   data: {
                     plateNo:plateNo,
-                    userId : this.$store.state.userId,
+                    userId : localStorage.getItem("userId"),
                   },
                   transformRequest: [function (data) {
                     // 以表单形式发送数据
@@ -197,7 +197,7 @@ import eventBus from './eventBus.js'//引入中间商
             this.$router.go(-1),10000//返回上一页
           },
      }
- }    
+ }
 </script>
 
 <style lang="less" scoped>
@@ -219,7 +219,7 @@ import eventBus from './eventBus.js'//引入中间商
          display: flex;
          height: 150/@rem;
          width: 100%;
-        
+
      }
      .pInput li{
          margin: auto;
@@ -240,7 +240,7 @@ import eventBus from './eventBus.js'//引入中间商
          margin-left: 20/@rem
      }
      .plate article{
-         
+
          font-size: 36/@rem;
          text-indent: 0.5em;
          line-height: 150/@rem;
@@ -263,8 +263,8 @@ import eventBus from './eventBus.js'//引入中间商
          color: #b2b2b2;
          line-height: 60/@rem;
      }
-     
- 
+
+
      //键盘板块
      .keyscontainer{
          position: absolute;
@@ -272,7 +272,7 @@ import eventBus from './eventBus.js'//引入中间商
          background-color: #ddd;
          height: 800/@rem;
          width: 100%;
-         
+
      }
      .keyscontainer li{//每一行都是一个弹性盒子
          display: flex;
@@ -281,7 +281,7 @@ import eventBus from './eventBus.js'//引入中间商
          height: 200/@rem;
      }
      .keyscontainer li .key{
-        
+
          width: 9%;
          height:90%;
          margin:10/@rem auto ;
@@ -296,7 +296,7 @@ import eventBus from './eventBus.js'//引入中间商
      .keyscontainer li .delete{
          width: 15%;
          background-color: #fb8972;
-         
+
      }
      .keyscontainer li .english,.keyscontainer li .chinese{
          width: 15%;
@@ -307,5 +307,5 @@ import eventBus from './eventBus.js'//引入中间商
     //  .keyscontainer li .chinese,{
     //      width: 18%;
     //  }
-    
+
 </style>

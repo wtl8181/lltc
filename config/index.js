@@ -17,8 +17,16 @@ module.exports = {
          pathRewrite:{
           '^/api': '' //这里理解成用‘/api’代替target里面的地址，
       }
-      }
-      
+      },
+      '/wx.txt' : {
+        target:'https://api.weixin.qq.com',
+        changeOrigin:true,
+        pathRewrite: {
+          '^/wx': ''
+        }
+      },
+
+
     },
 
     // Various Dev Server settings
@@ -29,7 +37,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

@@ -10,15 +10,49 @@ import  store from './store'
 import AMap from 'vue-amap'
 Vue.use(AMap)
 Vue.prototype.$ajax = Axios  //安装axios
-Axios.defaults.baseURL = '/api'
+// Axios.defaults.baseURL = '/api'
 Axios.defaults.headers.post['Content-Type'] = 'application/json'
 Vue.config.productionTip = false
+import $ from 'jquery'
+Vue.prototype.$jq = $;
 
-/* eslint-disable no-new */
-new Vue({ 
+
+// mint-ui组件库
+import Mint from 'mint-ui'
+import 'mint-ui/lib/style.css'
+// Vue.use(Mint)
+
+
+new Vue({
     el: '#app',
     router,
     store,
+    Mint,
     components: {App},
     template: '<App/>'
 })
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (JSON.parse(localStorage.getItem("islogin"))) {
+      next();
+    } else {
+      next({
+        path: "/"//指向为你的登录界面
+      });
+    }
+  } else {
+    next();
+  }
+  if (to.fullPath === "/") {
+    if (JSON.parse(localStorage.getItem("islogin"))) {
+      next({
+        path: from.fullPath
+      });
+    } else {
+      next();
+    }
+  }
+});
+//    路由守卫

@@ -83,7 +83,10 @@
 
             }
         },
-        mounted() {  // 在dom文档渲染完毕之后将要执行的函数 在Vue1.0版本中名字为compiled
+        mounted() {
+          console.log(`index启动了`)
+
+          // 在dom文档渲染完毕之后将要执行的函数 在Vue1.0版本中名字为compiled
             /*changeHigh()
             window.addEventListener('resize', changeHigh);
 
@@ -98,14 +101,8 @@
             }*/
         },
         created() {
-            // 请求轮播图数据
             {
-                //console.log( this.dataURL('vue.php','banner') )
-                
-                this.$ajax.get(this.dataURL('vue.php','banner'))
-                    .then((res)=>{
-                        this.bannerImg = res.data;
-                    })
+
             }
         }
     }

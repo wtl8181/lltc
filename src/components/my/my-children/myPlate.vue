@@ -10,7 +10,7 @@
         </ul>
         <router-link class='bindPlate':to="{name:'platewrite'}">去绑定车牌</router-link>
 
-        
+
     </div>
 </template>
 <script>
@@ -35,7 +35,7 @@ export default {
                   let str2 = this.pArr[index].slice(3,this.pArr[index].length);
                   let plateNo = str1+str2;
                   this.$ajax({
-                    url: 'mine/plate/unbind',
+                    url: 'api/mine/plate/unbind',
                     method: 'post',
                     data: {
                       plateNo:plateNo,
@@ -75,13 +75,14 @@ export default {
     },
 
     computed:{
-       
+
     },
-    
+
     mounted(){
-      this.$ajax.get('mine/plate/get', {
+      this.$ajax.get('api/mine/plate/get', {
         params: {
-          userId: this.$store.state.userId
+          // userId: this.$store.state.userId
+          userId:localStorage.getItem('userId')
         }
       }).then((res)=>{
         for( let i = 1; i<res.data.data.length;i++){
@@ -92,17 +93,18 @@ export default {
       }).catch(function (err) {
           console.log(err);
         });
-    
+
     }
 
-    
+
 }
 </script>
 <style lang="less" scoped>
     @rem:1080/10rem;
     .wrap{
       height: 100%;
-      overflow: auto;
+      padding-top: 20/@rem;
+      padding-bottom: 20/@rem;
       width: 100%;
       background-color:#f3f3f3 ;
     }

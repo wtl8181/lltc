@@ -1,11 +1,13 @@
 <template>
+    <!--此界面暂时不要做-->
     <div class="wrap">
-        <h2>我的消息页</h2>
-        <p>总数：{{total}}</p>
-        <son 
-            @increase='getTotal'
-            @decrease='getTotal'>
-        </son>
+         <h5>暂无消息！</h5>
+        <!--<h2>我的消息页</h2>-->
+        <!--<p>总数：{{total}}</p>-->
+        <!--<son -->
+            <!--@increase='getTotal'-->
+            <!--@decrease='getTotal'>-->
+        <!--</son>-->
     </div>
 </template>
 <script>
@@ -23,7 +25,7 @@ export default {
                     <button @click='plus'>+1</button>
                     <button @click='minus'>-1</button>
                 </div>
-            
+
             `,
             data(){
                 return {
@@ -34,12 +36,12 @@ export default {
                 plus:function(){
                     this.counter++;
                     this.$emit('increase',this.counter)
-                    
+
                 },
                 minus:function(){
                     this.counter--;
                     this.$emit('decrease',this.counter);//(发射的事件名，发射的参数)
-                    
+
         }
     }
         }
@@ -51,10 +53,10 @@ export default {
             this.total = total
         }
     }
-    
-    
-    
-    
+
+
+
+
 }
 </script>
 
@@ -65,6 +67,6 @@ export default {
         background-color: #f3f3f3;
         height:100%;
         overflow: hidden
-        
-    } 
+
+    }
 </style>

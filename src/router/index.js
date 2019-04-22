@@ -5,114 +5,129 @@ import logIN from '../components/common/logIn'
 import Parking from '../components/parking/parking'
 import Home from '../components/home/home'
 import Order from '../components/order/order'
-
+import OrderDetail from '../components/order/orderDetail'
 import My from '../components/my/my'
 import ComplainOfMy from '../components/my/my-children/complain'
+import MoneyOfMy from '../components/my/my-children/myMoney'
+import BillOfMy from '../components/my/my-children/myBill'
 import AboutUsOfMy from '../components/my/my-children/aboutUs'
 import MyNewsOfMy from '../components/my/my-children/myNews'
 import HelpCenterOfMy from '../components/my/my-children/helpCenter'
+import helpDetail from '../components/common/helpDetail'
 import MyPlateOfMy from '../components/my/my-children/myPlate'
 import PlateWrite from '../components/common/plateWrite'
-
-// 安装全局组件
-
-
-
-
-
-// Axios.defaults.baseURL = 'https://user.rongfeng.com/mine/about_us/get'
-
-// Vue.prototype.dataURL = function (file,title,id) {
-//     id = (id === undefined)?'':id;
-//     return file+'?title='+title+id;
-// }
-import $ from 'jquery'
-Vue.prototype.$jq = $;
-
-
-// mint-ui组件库
-import Mint from 'mint-ui'
-import 'mint-ui/lib/style.css'
-Vue.use(Mint)
+import protocol from '../components/common/proto'
+// 全局组件
 
 Vue.use(Router)
-
 export default new Router({//导出路由
     linkActiveClass:'rlActive',
     routes: [
         {
-            path:'/',
-            redirect:{name:'login'}//打开网页直接显示登录界面
-        },
-        {
-            path: '/login ',
             name:'login',
+            path: '/',
             component: logIN,
-            meta: { ftShow: false} 
+            meta: { ftShow: false}
         },
-        
+       {
+           path: '/protocol',
+           name:'protocol',
+           component: protocol,
+           meta: { ftShow: false}
+       },
+
         {
             name:'parking',
             path:'/parking',
-            component:Parking
+            component:Parking,
+            meta: {requireAuth: true}
         },
         {
             name:'home',
             path:'/home',
-            component:Home
+            component:Home,
+            meta: {requireAuth: true}
         },
         {
             name:'order',
             path:'/order',
-            component:Order
+            component:Order,
+            meta: {requireAuth: true}
+        },
+        {
+            name:'orderdetail',
+            path:'/order/ordertail',
+            component:OrderDetail,
+            meta: {ftShow: false,requireAuth: true}
         },
         {
             name:'my',
             path:'/my',
             component:My,
-            
+            meta: {requireAuth: true}
+
         },
         {
             name:'my-complain',
             path:'/my/complain',
             component:ComplainOfMy,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
+
         },
+       {
+           name:'my-money',
+           path:'/my/money',
+           component:MoneyOfMy,
+           meta: { ftShow: false,requireAuth: true}
+
+       },
+      {
+        name:'my-bill',
+        path:'/my/bill',
+        component:BillOfMy,
+        meta: { ftShow: false,requireAuth: true}
+
+      },
         {
             name:'my-aboutus',
             path:'/my/aboutUs',
             component:AboutUsOfMy,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
+
         },
         {
             name:'my-mynews',
             path:'/my/myNews',
             component:MyNewsOfMy,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
+
         },
         {
             name:'my-helpcenter',
             path:'/my/helpCenter',
             component:HelpCenterOfMy,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
+
+        },
+        {
+          name:'helpdetail',
+          path:'/common/helpDetail',
+          component:helpDetail,
+          meta: { ftShow: false,requireAuth: true}
+
         },
         {
             name:'my-myplate',
             path:'/my/myPlate',
             component:MyPlateOfMy,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
+
         },
         {
             name:'platewrite',
             path:'/common/plateWrite',
             component:PlateWrite,
-            meta: { ftShow: false} 
-            
+            meta: { ftShow: false,requireAuth: true}
         }
     ]
 })

@@ -6,8 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>郎朗停车</title>
     <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=WDDBZ-5WKWD-S6H4I-P5NVM-KK5OS-3JFH4"></script>
-    <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
-
+    <!--<script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>-->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script><!--微信地图-->
 
   </head>
   <body>
@@ -16,13 +16,13 @@
     </div>
     <!-- built files will be auto injected -->
   <script>
-      var html = document.querySelector('html');
-      var width = html.getBoundingClientRect().width; // 屏幕宽度
-      html.style.fontSize = width / 10 + 'px';  // 一个em就是屏幕宽度的十分之一 
-        
+      let html = document.querySelector('html');
+      let width = html.getBoundingClientRect().width; // 屏幕宽度
+      html.style.fontSize = width / 10 + 'px';  // 一个em就是屏幕宽度的十分之一
+
   </script>
   </body>
   <style>
-  
+
   </style>
 </html>
